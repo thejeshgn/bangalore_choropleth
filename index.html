@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Choloropleth Maps of Bangalore</title>
+<style>
+	html, body, #map {
+    width: 95%;
+    height:800px;
+}
+#map img { max-width: none; } 
+</style>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=true"></script>
+<script src="./gmaps.js"></script>
+<script src="./gmaps_util.js"></script>
+<script src="./GeoJSON.js"></script>
+<script src="./wards.js"></script>
+<script src="./default_theme.js"></script>
+<script src="./data/example.js"></script>
+
+</head>
+<body>
+<div id="map"></div>
+<script>
+        gmap = new GMaps({ div: '#map', lat: 12.931037   , lng:  77.580299,   zoom:13 });
+        for(var j =0; j< ward_boundary_options_theme.length-1; j++){
+                gmap.addControl({ position: 'top_left', content: '&nbsp;&nbsp;&nbsp;&nbsp;',
+                            style: {
+                            border: 'solid 1px #717B87',
+                            background: ward_boundary_options_theme[j]['fillColor']
+                          }});
+            }
+
+
+
+        var infowindow = new google.maps.InfoWindow();
+
+        function setInfoWindow (feature) {
+                    google.maps.event.addListener(feature, "click", function(event) {
+                        var content = "<div id='infoBox'><strong>POI Properties</strong><br />";
+                        for (var j in this.geojsonProperties) {
+                            content += j + ": " + this.geojsonProperties[j] + "<br />";
+                        }
+                        content += "</div>";
+                        infowindow.setContent(content);
+                        infowindow.position = event.latLng;
+                        infowindow.open(gmap.map);
+                    });
+        }
+        var theme_values = new Array();
+
+        for(var i=0; i < theme_data.length; i++){
+                theme_value_i = Math.round(theme_data[i]['ward_value']/1000)
+                if(theme_value_i > 10){
+                    theme_value_i = 10;
+                }
+                theme_values[theme_data[i]['ward']] = theme_value_i ;            
+        }
+        console.error(theme_values);
+        THEME_PROPERTY = "WARD_NO";
+        ward_boundary=showFeature(ward_b, ward_boundary_options_theme);
+ 
+</script>
+</body>
+</html>
