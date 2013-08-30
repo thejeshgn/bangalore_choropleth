@@ -1,7 +1,7 @@
 
 ward_boundary_options_val0 = {
+    strokeColor: "#333333",
     strokeOpacity: 1,
-	strokeColor: "#333333",
     strokeWeight: 1,
     fillColor: "#FFFFFF",
     fillOpacity: 0

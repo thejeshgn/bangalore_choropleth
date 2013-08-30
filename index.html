@@ -15,7 +15,7 @@
 <script src="./GeoJSON.js"></script>
 <script src="./wards.js"></script>
 <script src="./default_theme.js"></script>
-<script src="./data/example_x.js"></script>
+<script src="./data/example_y.js"></script>
 
 </head>
 <body>
@@ -58,11 +58,11 @@
         var theme_values = new Array();
         for(var i=0; i < theme_data.length; i++){
                 theme_value_i = Math.round(theme_data[i]['ward_value']/step)
-                console.error(theme_value_i);
+                //console.error(theme_value_i);
                 if(theme_value_i > 10){
                     theme_value_i = 10;
                 }
-                theme_values[theme_data[i]['ward']] = theme_value_i ;            
+                theme_values[theme_data[i]['ward']] = theme_value_i ;     
         }
         console.error(theme_values);
         THEME_PROPERTY = "WARD_NO";

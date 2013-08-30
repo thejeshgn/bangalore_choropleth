@@ -197,15 +197,16 @@ var GeoJSON = function( geojson, options ){
 				//Generally this is where it pics up the theme value, so we need to deside the
 				//Theme here
 				var opts;
-				console.debug(THEME_PROPERTY);
+				//console.debug(THEME_PROPERTY);
 				if(THEME_PROPERTY){
 					var my_option;
-					console.debug(geojson.features[i].properties[THEME_PROPERTY]);
+					//console.error(geojson.features[i].properties[THEME_PROPERTY]);
 
-					if (theme_values[geojson.features[i].properties[THEME_PROPERTY]]){
+					if (theme_values[geojson.features[i].properties[THEME_PROPERTY]] != null){
 						ind = theme_values[geojson.features[i].properties[THEME_PROPERTY]]
 						console.debug("INSIDE"+options[ind]);
 						my_option = options[ind]
+						console.error(my_option);
 					}else{
 						my_option = options[11];
 					}
