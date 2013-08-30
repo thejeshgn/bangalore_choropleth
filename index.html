@@ -15,7 +15,7 @@
 <script src="./GeoJSON.js"></script>
 <script src="./wards.js"></script>
 <script src="./default_theme.js"></script>
-<script src="./data/example.js"></script>
+<script src="./data/example_x.js"></script>
 
 </head>
 <body>
@@ -46,10 +46,19 @@
                         infowindow.open(gmap.map);
                     });
         }
-        var theme_values = new Array();
+        var steps = new Array()
+        step = Math.round( theme_data_max/10 )
+        console.error("STEP="+step);
+/*        steps[0] = 0;
+        for(var k=1; k=10, k++){
+            steps[k] = steps[k-1]+step; 
+        }
+*/
 
+        var theme_values = new Array();
         for(var i=0; i < theme_data.length; i++){
-                theme_value_i = Math.round(theme_data[i]['ward_value']/1000)
+                theme_value_i = Math.round(theme_data[i]['ward_value']/step)
+                console.error(theme_value_i);
                 if(theme_value_i > 10){
                     theme_value_i = 10;
                 }
