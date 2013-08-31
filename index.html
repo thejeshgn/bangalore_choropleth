@@ -15,20 +15,13 @@
 <script src="./GeoJSON.js"></script>
 <script src="./wards.js"></script>
 <script src="./default_theme.js"></script>
-<script src="./data/example_y.js"></script>
+<script src="./data/example.js"></script>
 
 </head>
 <body>
 <div id="map"></div>
 <script>
         gmap = new GMaps({ div: '#map', lat: 12.931037   , lng:  77.580299,   zoom:13 });
-        for(var j =0; j< ward_boundary_options_theme.length-1; j++){
-                gmap.addControl({ position: 'top_left', content: '&nbsp;&nbsp;&nbsp;&nbsp;',
-                            style: {
-                            border: 'solid 1px #717B87',
-                            background: ward_boundary_options_theme[j]['fillColor']
-                          }});
-            }
 
 
 
@@ -49,11 +42,16 @@
         var steps = new Array()
         step = Math.round( theme_data_max/10 )
         console.error("STEP="+step);
-/*        steps[0] = 0;
-        for(var k=1; k=10, k++){
-            steps[k] = steps[k-1]+step; 
-        }
-*/
+
+        for(var j =0; j< ward_boundary_options_theme.length-1; j++){
+                content = j*step;
+                gmap.addControl({ position: 'top_left', content: '&nbsp;&lt;'+content+'&nbsp;',
+                            style: {
+                            border: 'solid 1px #717B87',
+                            background: ward_boundary_options_theme[j]['fillColor']
+                          }});
+            }
+
 
         var theme_values = new Array();
         for(var i=0; i < theme_data.length; i++){
